@@ -6,9 +6,9 @@ import models.song.Song;
 import java.util.List;
 
 public class SongService {
-    public static Song create(String title, double size){
+    public static Song create(String title, double duration){
         try{
-            return new Song(title, size);
+            return new Song(title, duration);
         }catch (Exception e){
             System.out.println("Error creating song: " + e.getMessage());
             return null;

@@ -10,22 +10,22 @@ public class Song {
     private UUID id;
     private String title;
     private LinkedHashSet<Artist> artists;
-    private double size;
+    private double duration;
 
-    public Song(String title, double size){
+    public Song(String title, double duration){
         Objects.requireNonNull(title, "Title can't be null.");
 
         if(title.isEmpty()){
             throw new IllegalArgumentException("Title can't be empty.");
         }
 
-        if(size <= 1){
+        if(duration <= 1){
             throw new IllegalArgumentException("Song size can't be smaller than one");
         }
 
         this.id =  UUID.randomUUID();
         this.title = title;
-        this.size = size;
+        this.duration = duration;
         this.artists = new LinkedHashSet<>();
     }
 
@@ -51,8 +51,8 @@ public class Song {
         return title;
     }
 
-    public double getSize() {
-        return size;
+    public double getDuration() {
+        return duration;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Song {
         return "Song{" +
                 "title='" + title + '\'' +
                 ", artists=" + artists.stream().map(Artist::getName).toList() +
-                ", size=" + size +
+                ", size=" + duration +
                 '}';
     }
 }

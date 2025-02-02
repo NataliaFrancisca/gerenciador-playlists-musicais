@@ -49,7 +49,7 @@ public class Main {
         SongService.setArtist(songE, bk);
 
         // creating an album
-        Album bkAlbum = AlbumService.createAlbum("Diamantes, Lágrimas, e Rostos para Esquecer", bk, LocalDate.of(2025, 1, 28));
+        Album bkAlbum = AlbumService.create("Diamantes, Lágrimas, e Rostos para Esquecer", bk, LocalDate.of(2025, 1, 28));
         AlbumService.addSong(bkAlbum, songD);
         AlbumService.addSong(bkAlbum, songE);
 

@@ -7,7 +7,7 @@ import models.song.Song;
 import java.time.LocalDate;
 
 public class AlbumService {
-    public static Album createAlbum(String title, Artist artist, LocalDate releaseDate){
+    public static Album create(String title, Artist artist, LocalDate releaseDate){
         try{
             return new Album(title, artist, releaseDate);
         }catch (Exception e) {

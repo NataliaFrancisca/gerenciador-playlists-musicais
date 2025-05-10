@@ -1,25 +1,12 @@
 package modelo;
 
-public class Usuario {
-    private final String nome;
-    private final String username;
-
-    public Usuario(String nome, String username){
-        this.nome = nome;
-        this.username = username;
-    }
-
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getUsername() {
-        return username;
+public class Usuario extends Pessoa {
+    public Usuario(String nome, String username) {
+        super(nome, username);
     }
 
     @Override
     public String toString() {
-        return "nome: " + nome + ", username: " + username;
+        return "nome: " + this.getNome() + ", username: " + this.getUsername();
     }
 }

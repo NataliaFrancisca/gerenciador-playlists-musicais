@@ -1,77 +1,64 @@
-# 🖥️🎸  Sistema Gerenciador de Playlists Musicais
+# 💽🎛️ Sistema Gerenciador de Musicas
 
 Este projeto permite que você crie e gerencie usuários, artistas, álbuns, músicas e playlists de maneira simples e intuitiva.
 
+## Stack:
+- Java 17
+- JUnit
+- Mockito
+- Maven
+
 ## Funcionalidades:
-- **Gerenciamento de Usuários**: crie e gerencie usuários que podem ser donos de playlists.
-  - `**Obs.:** não coloquei nenhuma regra para válidar usuários duplicados, mas podemos implementar depois.`
-- **Gerenciamento de Artistas**: cadastre artistas e associe-os às suas músicas e álbuns.
-  - `**Obs.:** não coloquei nenhuma regra para válidar artistas duplicados, mas podemos implementar depois.`
-- **Gerenciamento de Álbuns**: crie álbuns e adicione músicas a eles.
-- **Gerenciamento de Músicas**: cadastre músicas e vincule-as a artistas e álbuns.
-- **Gerenciamento de Playlists**: crie playlists personalizadas adicionando músicas e atribua-as a usuários.
+- **Usuário e Artista**: criar usuários que podem criar playlists, e artistas que podem criar álbuns e ser creditados em músicas.
+- **Música**: criar músicas e creditar artistas a elas.
+- **Álbum e Playlist**: criar álbuns e playlists, onde também podemos adicionar músicas.
 
 ## Como Funciona:
 
-### 1. Criar Usuários:
-- Os usuários podem ser criados com um nome e um nome de usuário.
-- **Exemplo:**
-  ```java
-  User user =
-  UserService.create("Natalia", "natfrancisca");
-  ```
-
-
+### 1. Criar Usuário:
+O usuário é criado com dois campos obrigatórios: *nome e username*.
+```java
+Usuario usuario = new Usuario("Natalia", "ntfrancisca");
+```
+  
 ### 2. Cadastrar Artista:
-- Artistas podem ser cadastrados com um nome e uma breve descrição.
-- **Exemplo:**
-  ```java
-  Artist duquesa = ArtistService.create(
-    "Duquesa",
-    "Duquesa é uma rapper baiana que mistura rap, trap e R&B, destacando-se com os álbuns Taurus e Taurus, Vol. 2."
-  );
+O artista é criado com três campos obrigatórios: *nome, username e descrição*.
+```java
+Artista artista = new Artista(
+  "Duquesa",
+  "duquesa",
+  "Duquesa é uma rapper baiana que mistura rap, trap e R&B, destacando-se com os álbuns Taurus e Taurus, Vol. 2."
+);
+```
 
-  Artist bk = ArtistService.create(
-    "BK",
-    "BK' é um dos principais rappers brasileiros, conhecido por suas letras impactantes sobre racismo, desigualdade e identidade."
-  );
-  ```
+### 3. Cadastrar Album:
+O álbum é criado com quatro campos obrigatórios: *id, título, data de lançamento e artista*.
+```java
+Album album = new Album(0, "Taurus, Vol.2", LocalDate.of(2024, 5, 10), artistas.buscarArtistaPorUsername("duquesa"));
+```
 
-### 3. Adicionar Músicas:
-- As músicas podem ser cadastradas com um título e duração.
-- **Exemplo:**
-  ```java
-  Song songA = SongService.create("Fuso", 1.54);
-  Song songB = SongService.create("Só Quero Ver", 2.49);
-  ```
+### 4. Cadastrar Playlist:
+A playlist é criada com três campos obrigatórios: *id, título e usuário responsável*.
+```java
+Playlist playlist = new Playlist(1, "girls want what???", usuarios.buscarUsuarioPorUsername("ntfrancisca"));
+```
 
-### 4. Criar Álbuns: 
-- Para criar um álbum é preciso passar o título, artista e a data de lançamento.
-- É possível adicionar músicas a esse álbum que foi criado.
-- **Exemplo:**
-  ```java
-  Album album = AlbumService.create(
-    "Diamantes, Lágrimas, e Rostos para Esquecer",
-    bk,
-    LocalDate.of(2025, 1, 28)
-  );
-
-  AlbumService.addSong(album, songB);
-  ```
-
-### 5. Criar Playlists:
-- Playlists podem ser criadas por usuários e preenchidas com músicas.
-- **Exemplo:**
-  ```java
-  Playlist playlist = PlaylistService.create("Minhas Favoritas", user);
-  playlist.addSong(songA);
-  playlist.addSong(songB);
-  ```
+### 5. Cadastrar Música:
+A música é criada com três campos obrigatórios: *id, título e duração*.
+```
+Musica musica = new Musica(3, "Disk P%#$#!", 2.30);
+```
+É importante atribuir artista(s) à música:
+```
+musica.atribuirArtista(artistas.buscarArtistaPorUsername("duquesa"));
+musica.atribuirArtista(artistas.buscarArtistaPorUsername("tashaetracie"));
+```
 
 ## O que aprendi com esse projeto:
 - Aprendi mais sobre como estruturar e organizar um projeto em Java, definindo pacotes e responsabilidades claras para cada classe.
-- Utilizei a `LinkedHashSet` para garantir que apenas músicas únicas fossem adicionadas, mantendo a ordem de inserção na coleção.
-- Apliquei conceitos de tratamento de exceções para lidar com erros e garantir que o sistema seja mais robusto.
-- Utilizei o conceito de Composição para evitar duplicação de código. Em vez de `Playlist` e `Album` terem métodos repetidos (`addSong` e `removeSong`), criei a classe Songs para centralizar esses comportamentos e reutilizá-los em ambas as classes.
+- Usei herança para lidar com diferentes classes que têm atributos e métodos em comum.
+- Utilizei coleções como `LinkedHashMap`, `Set<Musica>` e `List<String>`, garantindo ordem de inserção, unicidade de elementos e flexibilidade na manipulação de dados.
+- Apliquei conceitos de tratamento de exceções para lidar com erros e tornar o sistema mais robusto.
+- Criei testes unitários para as classes de serviço, garantindo um código mais confiável e eficiente.
 
-  
+

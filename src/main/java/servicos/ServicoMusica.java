@@ -23,7 +23,7 @@ public class ServicoMusica {
         }
     }
 
-    public void adicionarMusica(Musica musica, Colecao colecao){
+    protected void adicionarMusica(Musica musica, Colecao colecao){
         this.validarMusica(musica);
 
         if(colecao.getMusicas().contains(musica)){
@@ -33,7 +33,7 @@ public class ServicoMusica {
         colecao.adicionarMusica(musica);
     }
 
-    public void removerMusica(Musica musica, Colecao colecao){
+    protected void removerMusica(Musica musica, Colecao colecao){
         if(!colecao.getMusicas().contains(musica)){
             throw new IllegalArgumentException("Não existe essa música na coleção");
         }

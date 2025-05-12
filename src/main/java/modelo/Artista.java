@@ -14,6 +14,6 @@ public class Artista extends Pessoa {
 
     @Override
     public String toString() {
-        return "nome: " + this.getNome() + ", descrição: " + descricao;
+        return "Artista: " + this.getNome() + ", Descrição: " + descricao;
     }
 }
